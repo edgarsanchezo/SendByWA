@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#121212">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#121212">
-    <link rel="icon" sizes="192x192" href="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+    <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/733/733585.png">
     <title>WhatsApp Link Generator</title>
     <style>
@@ -23,163 +23,50 @@
             padding: 20px;
             box-sizing: border-box;
         }
-
         .container {
             background-color: #1e1e1e;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             text-align: center;
-            width: 100%;
             max-width: 400px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
         }
-
-        .container:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
-        }
-
-        .container h1 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #25d366;
-            animation: fadeIn 0.8s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .input-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-            animation: slideIn 0.8s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .input-group input {
-            flex: 1;
-            padding: 12px;
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: calc(100% - 24px);
             border: 1px solid #333333;
             border-radius: 6px;
-            outline: none;
-            font-size: 1em;
             background-color: #2c2c2c;
             color: #e0e0e0;
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-            width: 100%;
-            box-sizing: border-box;
-            -moz-appearance: textfield;
-            ime-mode: disabled;
         }
-
-        .input-group input::-webkit-outer-spin-button,
-        .input-group input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .input-group input:focus {
-            box-shadow: 0 0 8px rgba(37, 211, 102, 0.4);
-            border-color: #25d366;
-        }
-
-        .icon-button {
+        button {
             background-color: #25d366;
+            color: #fff;
+            padding: 10px 20px;
             border: none;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1.5em;
-            color: #ffffff;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .icon-button:hover {
-            transform: scale(1.2);
-            background-color: #20b858;
-        }
-
-        .icon-button:active {
-            transform: scale(1);
-        }
-
-        .icon-button i {
-            font-size: 1.3em;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-                border-radius: 10px;
-            }
-
-            .container h1 {
-                font-size: 1.2em;
-            }
-
-            .input-group input {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-
-            .icon-button {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2em;
-            }
         }
     </style>
     <script>
         function generateWhatsAppLink() {
             const input = document.getElementById('phoneNumber');
             let number = input.value.trim();
-
             if (number.startsWith('0')) {
                 number = '595' + number.substring(1);
             }
-
             const link = `https://wa.me/${number}`;
             window.open(link, '_blank');
-
-            // Clear the input field
             input.value = '';
         }
-
-        document.addEventListener('keydown', (event) => {
-            const input = document.getElementById('phoneNumber');
-            if (event.target === input && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
-                event.preventDefault();
-            }
-        });
     </script>
 </head>
 <body>
     <div class="container">
         <h1>WhatsApp Link Generator</h1>
-        <div class="input-group">
-            <input type="number" id="phoneNumber" placeholder="Enter phone number" autocomplete="off" />
-            <button class="icon-button" onclick="generateWhatsAppLink()">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
+        <input type="number" id="phoneNumber" placeholder="Enter phone number" autocomplete="off" />
+        <button onclick="generateWhatsAppLink()">Generate Link</button>
     </div>
-
-    <!-- FontAwesome for the icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 </body>
 </html>
