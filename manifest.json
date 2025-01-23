@@ -1,5 +1,5 @@
 {
-    "name": "Enviar WhatsApp",
+    "name": "Enviar por WhatsApp",
     "short_name": "Enviar WA",
     "start_url": "./",
     "display": "standalone",
