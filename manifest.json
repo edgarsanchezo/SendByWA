@@ -1,6 +1,6 @@
 {
-    "name": "WhatsApp Link Generator",
-    "short_name": "WA Link",
+    "name": "Enviar WhatsApp",
+    "short_name": "Enviar WA",
     "start_url": "./",
     "display": "standalone",
     "background_color": "#121212",
